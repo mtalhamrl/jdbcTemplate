@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import com.jdbcTemplate.jdbc.entities.Course;
 
-public class CourseRowMapperImpl implements org.springframework.jdbc.core.RowMapper<Course>{
+public class CourseRowMapper implements org.springframework.jdbc.core.RowMapper<Course>{
 	
 
 	@Override

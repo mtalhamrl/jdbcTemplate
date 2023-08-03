@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jdbcTemplate.jdbc.model.request.CreateCourseRequest;
 import com.jdbcTemplate.jdbc.model.request.UpdateCourseRequest;
-import com.jdbcTemplate.jdbc.model.response.CourseGetByIdResponse;
 import com.jdbcTemplate.jdbc.model.response.CourseDeleteByIdResponse;
 import com.jdbcTemplate.jdbc.model.response.CourseGetAllResponse;
+import com.jdbcTemplate.jdbc.model.response.CourseGetByIdResponse;
 import com.jdbcTemplate.jdbc.service.course.CourseService;
 
 @RestController

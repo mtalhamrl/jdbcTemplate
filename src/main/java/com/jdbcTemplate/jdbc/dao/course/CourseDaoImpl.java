@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.jdbcTemplate.jdbc.entities.Course;
-import com.jdbcTemplate.jdbc.model.Mappers.CourseRowMapperImpl;
+import com.jdbcTemplate.jdbc.model.Mappers.CourseRowMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,7 +28,7 @@ public class CourseDaoImpl implements CourseDao {
 
 	public List<Course> getAll() {
 		String Sql="select * from Course";
-		List<Course> courses = jdbcTemplate.query(Sql,new CourseRowMapperImpl());
+		List<Course> courses = jdbcTemplate.query(Sql,new CourseRowMapper());
 		return courses;
 	}
 	@Override
@@ -41,7 +41,7 @@ public class CourseDaoImpl implements CourseDao {
 	public Course getById(int id) {
 		String sql="select * from course where id=?";
 		try {
-		return jdbcTemplate.queryForObject(sql, new CourseRowMapperImpl(),id);		
+		return jdbcTemplate.queryForObject(sql, new CourseRowMapper(),id);		
 	}catch(Exception e){
 		if(!(e instanceof DataAccessException)) {
 			return null;
