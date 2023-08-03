@@ -25,7 +25,6 @@ public class CourseServiceImpl implements CourseService{
 		Course course = new Course();
 		course.setId(createCourseRequest.getId());
 		course.setName(createCourseRequest.getName());
-		
 		int isOk = courseDao.insert(course);
 		if(isOk>0) {
 			return this.getById(createCourseRequest.getId());

@@ -7,7 +7,7 @@ import com.jdbcTemplate.jdbc.model.response.StudentsGradeGetAllResponse;
 import com.jdbcTemplate.jdbc.model.response.StudentsGradeGetByIdResponse;
 
 public interface StudentsGradeService {
-	CreateStudentsGradeRequest insert(CreateStudentsGradeRequest createStudentsGradeRequest);
+	StudentsGradeGetByIdResponse insert(CreateStudentsGradeRequest createStudentsGradeRequest);
 	public StudentsGradeGetAllResponse getAll();
 	StudentsGradeGetByIdResponse update(UpdateStudentsGradeRequest updateStudentsGradeRequest, int id);
 	public StudentsGradeGetByIdResponse getById(int id);
