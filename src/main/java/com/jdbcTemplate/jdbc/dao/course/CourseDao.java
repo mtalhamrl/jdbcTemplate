@@ -3,11 +3,11 @@ package com.jdbcTemplate.jdbc.dao.course;
 import java.util.List;
 
 import com.jdbcTemplate.jdbc.entities.Course;
-import com.jdbcTemplate.jdbc.model.request.CreateCourseRequest;
-import com.jdbcTemplate.jdbc.model.request.UpdateCourseRequest;
 
 public interface CourseDao {
-	int insert(CreateCourseRequest createCourseRequest);
-	List<Course> getAll();
-	int update(UpdateCourseRequest updateCourseRequest);
+	public int insert(Course createCourseRequest);
+	public List<Course> getAll();
+	public int update(Course course);
+	public Course getById(int id);
+	public int deleteById(int id);
 }

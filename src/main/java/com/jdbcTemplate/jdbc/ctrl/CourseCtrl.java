@@ -2,17 +2,20 @@ package com.jdbcTemplate.jdbc.ctrl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jdbcTemplate.jdbc.model.request.CreateCourseRequest;
 import com.jdbcTemplate.jdbc.model.request.UpdateCourseRequest;
-import com.jdbcTemplate.jdbc.model.response.CourseResponse;
+import com.jdbcTemplate.jdbc.model.response.CourseGetByIdResponse;
+import com.jdbcTemplate.jdbc.model.response.CourseDeleteByIdResponse;
+import com.jdbcTemplate.jdbc.model.response.CourseGetAllResponse;
 import com.jdbcTemplate.jdbc.service.course.CourseService;
 
 @RestController
@@ -23,24 +26,23 @@ public class CourseCtrl {
 	
 	@PostMapping("/add")
 	ResponseEntity<?> insert(@RequestBody CreateCourseRequest createCourseRequest) {
-		boolean isOk = courseService.insert(createCourseRequest);
-		if(isOk)
-		return ResponseEntity.ok("ok");
-		else {
-			return ResponseEntity.ok("failed");
-		}
+	return ResponseEntity.ok(courseService.insert(createCourseRequest));
 	}
 	@GetMapping("/getall")
-	public CourseResponse getAll() {
+	public CourseGetAllResponse getAll() {
 		return courseService.getAll();
 	}
-	@PutMapping("/update")
-	ResponseEntity<?> update(@RequestBody() UpdateCourseRequest updateCourseRequest ) {
-		boolean isOk = courseService.update(updateCourseRequest);
-		if(isOk) {
-			return ResponseEntity.ok("ok");
-		} else {
-			return ResponseEntity.ok("failed");
-		}
+	@PutMapping("/update/{id}")
+	ResponseEntity<?> update(@RequestBody  UpdateCourseRequest updateCourseRequest,@PathVariable int id ) {
+		return ResponseEntity.ok(courseService.update(updateCourseRequest,id));
+		
+	}
+	@GetMapping("/{id}")
+	public CourseGetByIdResponse getById(@PathVariable int id) {
+		return courseService.getById(id);
+	}
+	@DeleteMapping("/{id}")
+	CourseDeleteByIdResponse deleteById(@PathVariable int id) {
+		return this.courseService.deleteById(id);
 	}
 }

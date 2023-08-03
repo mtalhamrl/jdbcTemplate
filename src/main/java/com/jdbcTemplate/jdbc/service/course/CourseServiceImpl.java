@@ -1,5 +1,8 @@
 package com.jdbcTemplate.jdbc.service.course;
 
+import static com.jdbcTemplate.jdbc.model.response.BaseResponse.IS_OK_ITEM;
+import static com.jdbcTemplate.jdbc.model.response.BaseResponse.NOT_FOUND_ITEM;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,34 +12,99 @@ import com.jdbcTemplate.jdbc.dao.course.CourseDao;
 import com.jdbcTemplate.jdbc.entities.Course;
 import com.jdbcTemplate.jdbc.model.request.CreateCourseRequest;
 import com.jdbcTemplate.jdbc.model.request.UpdateCourseRequest;
-import com.jdbcTemplate.jdbc.model.response.CourseResponse;
+import com.jdbcTemplate.jdbc.model.response.CourseDeleteByIdResponse;
+import com.jdbcTemplate.jdbc.model.response.CourseGetAllResponse;
+import com.jdbcTemplate.jdbc.model.response.CourseGetByIdResponse;
 @Service
 public class CourseServiceImpl implements CourseService{
 	@Autowired
 	CourseDao courseDao;
 	@Override
-	public boolean insert(CreateCourseRequest createCourseRequest) {
-		int isOk = courseDao.insert(createCourseRequest);
-		return isOk>0 ?true : false ;
+	public CourseGetByIdResponse insert(CreateCourseRequest createCourseRequest) {
+		CourseGetByIdResponse insertResponse = new CourseGetByIdResponse();
+		Course course = new Course();
+		course.setId(createCourseRequest.getId());
+		course.setName(createCourseRequest.getName());
+		
+		int isOk = courseDao.insert(course);
+		if(isOk>0) {
+			return this.getById(createCourseRequest.getId());
+		}else {
+		insertResponse.setCode(405);
+		insertResponse.setOperationMessage("couldnt save check again");
+		return insertResponse;
+		}
 		
 	}
 	@Override
-	public CourseResponse getAll() {
-		CourseResponse response = new CourseResponse(); 
+	public CourseGetAllResponse getAll() {
+		CourseGetAllResponse response = new CourseGetAllResponse(); 
 		List<Course> courses = courseDao.getAll();
 		if(courses!=null && courses.size()>0) {
-		response.setCode(200);
+		response.setCode(IS_OK_ITEM);
 		response.setOperationMessage("ok");
 		response.setCourses(courses);	
 		}else {
-			response.setCode(404);
-			response.setOperationMessage("course haven't found");
+			response.setCode(NOT_FOUND_ITEM);
+			response.setOperationMessage("course has not found");
 		}
 		return response;
 	}
 	@Override
-	public boolean update(UpdateCourseRequest updateCourseRequest) {
-		int isOk = courseDao.update(updateCourseRequest);
-		return isOk>0 ?true:false ;
+	public CourseGetByIdResponse update(UpdateCourseRequest updateCourseRequest,int id) {
+		CourseGetByIdResponse updateResponse= new CourseGetByIdResponse();
+		Course courseDb = courseDao.getById(id);
+		
+		
+		if(courseDb==null) {
+			updateResponse.setCode(NOT_FOUND_ITEM);
+			updateResponse.setOperationMessage("course didnt find"); 
+			return updateResponse;
+		}
+		
+		courseDb.setName(updateCourseRequest.getName());
+		int isOk = courseDao.update(courseDb);
+		if(isOk>0) {
+			return this.getById(id);
+		}else {
+			updateResponse.setCode(NOT_FOUND_ITEM);
+			updateResponse.setOperationMessage("course didnt update"); 
+			return updateResponse;
+		}
 	}
-}
+	@Override
+	public CourseGetByIdResponse getById(int id) {
+		CourseGetByIdResponse response = new CourseGetByIdResponse();
+		Course courses= courseDao.getById(id);
+		if(courses!=null) {
+			response.setCode(IS_OK_ITEM);
+			response.setOperationMessage("ok");
+			response.setCourse(courses);
+		}
+		else {
+			response.setCode(NOT_FOUND_ITEM);
+			response.setOperationMessage("id has not matched");
+		}
+		return response;
+	}
+	@Override
+	public CourseDeleteByIdResponse deleteById(int id) {
+		CourseDeleteByIdResponse courseDeleteByIdResponse = new CourseDeleteByIdResponse();
+		CourseGetByIdResponse course = this.getById(id);
+		if(course.getCode()==IS_OK_ITEM) {
+			int response= courseDao.deleteById(id);
+			if(response<=0) {
+				courseDeleteByIdResponse.setCode(IS_OK_ITEM);
+				courseDeleteByIdResponse.setOperationMessage("problem at deleted");
+				return courseDeleteByIdResponse;
+			}
+			
+		}
+		courseDeleteByIdResponse.setCode(IS_OK_ITEM);
+		courseDeleteByIdResponse.setOperationMessage("deleted");
+		return courseDeleteByIdResponse;
+	}
+	
+	
+	}
+
