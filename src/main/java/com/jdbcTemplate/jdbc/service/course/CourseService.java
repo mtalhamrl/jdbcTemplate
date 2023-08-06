@@ -1,10 +1,10 @@
 package com.jdbcTemplate.jdbc.service.course;
 
-import com.jdbcTemplate.jdbc.model.request.CreateCourseRequest;
-import com.jdbcTemplate.jdbc.model.request.UpdateCourseRequest;
-import com.jdbcTemplate.jdbc.model.response.CourseDeleteByIdResponse;
-import com.jdbcTemplate.jdbc.model.response.CourseGetAllResponse;
-import com.jdbcTemplate.jdbc.model.response.CourseGetByIdResponse;
+import com.jdbcTemplate.jdbc.model.request.course.CreateCourseRequest;
+import com.jdbcTemplate.jdbc.model.request.course.UpdateCourseRequest;
+import com.jdbcTemplate.jdbc.model.response.course.CourseDeleteByIdResponse;
+import com.jdbcTemplate.jdbc.model.response.course.CourseGetAllResponse;
+import com.jdbcTemplate.jdbc.model.response.course.CourseGetByIdResponse;
 
 
 public interface CourseService {

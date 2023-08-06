@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jdbcTemplate.jdbc.model.request.CreateCourseRequest;
-import com.jdbcTemplate.jdbc.model.request.UpdateCourseRequest;
-import com.jdbcTemplate.jdbc.model.response.CourseDeleteByIdResponse;
-import com.jdbcTemplate.jdbc.model.response.CourseGetAllResponse;
-import com.jdbcTemplate.jdbc.model.response.CourseGetByIdResponse;
+import com.jdbcTemplate.jdbc.model.request.course.CreateCourseRequest;
+import com.jdbcTemplate.jdbc.model.request.course.UpdateCourseRequest;
+import com.jdbcTemplate.jdbc.model.response.course.CourseDeleteByIdResponse;
+import com.jdbcTemplate.jdbc.model.response.course.CourseGetAllResponse;
+import com.jdbcTemplate.jdbc.model.response.course.CourseGetByIdResponse;
 import com.jdbcTemplate.jdbc.service.course.CourseService;
 
 @RestController

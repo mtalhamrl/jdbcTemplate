@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.jdbcTemplate.jdbc.dao.course.CourseDao;
 import com.jdbcTemplate.jdbc.entities.Course;
-import com.jdbcTemplate.jdbc.model.request.CreateCourseRequest;
-import com.jdbcTemplate.jdbc.model.request.UpdateCourseRequest;
-import com.jdbcTemplate.jdbc.model.response.CourseDeleteByIdResponse;
-import com.jdbcTemplate.jdbc.model.response.CourseGetAllResponse;
-import com.jdbcTemplate.jdbc.model.response.CourseGetByIdResponse;
+import com.jdbcTemplate.jdbc.model.request.course.CreateCourseRequest;
+import com.jdbcTemplate.jdbc.model.request.course.UpdateCourseRequest;
+import com.jdbcTemplate.jdbc.model.response.course.CourseDeleteByIdResponse;
+import com.jdbcTemplate.jdbc.model.response.course.CourseGetAllResponse;
+import com.jdbcTemplate.jdbc.model.response.course.CourseGetByIdResponse;
 @Service
 public class CourseServiceImpl implements CourseService{
 	@Autowired
@@ -53,14 +53,11 @@ public class CourseServiceImpl implements CourseService{
 	public CourseGetByIdResponse update(UpdateCourseRequest updateCourseRequest,int id) {
 		CourseGetByIdResponse updateResponse= new CourseGetByIdResponse();
 		Course courseDb = courseDao.getById(id);
-		
-		
 		if(courseDb==null) {
 			updateResponse.setCode(NOT_FOUND_ITEM);
 			updateResponse.setOperationMessage("course didnt find"); 
 			return updateResponse;
 		}
-		
 		courseDb.setName(updateCourseRequest.getName());
 		int isOk = courseDao.update(courseDb);
 		if(isOk>0) {
