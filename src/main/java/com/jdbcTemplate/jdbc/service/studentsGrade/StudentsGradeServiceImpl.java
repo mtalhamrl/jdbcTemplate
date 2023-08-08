@@ -90,8 +90,20 @@ public class StudentsGradeServiceImpl implements StudentsGradeService{
 
 	@Override
 	public StudentsGradeDeleteByIdResponse deleteById(int id) {
+		StudentsGradeDeleteByIdResponse deleteByIdResponse = new StudentsGradeDeleteByIdResponse();
+		StudentsGradeGetByIdResponse getByIdResponse = this.getById(id);
+		if(getByIdResponse.getCode()==IS_OK_ITEM) {
+			int response = studentsGradeDao.deleteById(id);
+			if(response<=0) {
+				deleteByIdResponse.setCode(NOT_FOUND_ITEM);
+				deleteByIdResponse.setOperationMessage("problem at deleted");
+			}
+		}
+		deleteByIdResponse.setCode(IS_OK_ITEM);
+		deleteByIdResponse.setOperationMessage("deleted");
+		return deleteByIdResponse;
 		
-		return null;
+		
 	}
 
 }

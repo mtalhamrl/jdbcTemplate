@@ -25,7 +25,6 @@ public class CourseDaoImpl implements CourseDao {
 		return jdbcTemplate.update("insert into Course values(?,?) ", createCourseRequest.getId(),createCourseRequest.getName());	      
 	}
 	@Override
-
 	public List<Course> getAll() {
 		String Sql="select * from Course";
 		List<Course> courses = jdbcTemplate.query(Sql,new CourseRowMapper());
@@ -35,7 +34,6 @@ public class CourseDaoImpl implements CourseDao {
 	public int update(Course course) {
 		String sql="update course set name=? where id =? ";
 		return jdbcTemplate.update(sql,course.getName(),course.getId());
-
 	}
 	@Override
 	public Course getById(int id) {
@@ -53,10 +51,7 @@ public class CourseDaoImpl implements CourseDao {
 	public int deleteById(int id) {
 		String sql="delete from course where id =?";
 		return jdbcTemplate.update(sql,id);
-		
 	}
-	
-	
 	}
 	
 	

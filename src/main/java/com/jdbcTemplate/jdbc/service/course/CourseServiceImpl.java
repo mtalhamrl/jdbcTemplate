@@ -90,7 +90,7 @@ public class CourseServiceImpl implements CourseService{
 		if(course.getCode()==IS_OK_ITEM) {
 			int response= courseDao.deleteById(id);
 			if(response<=0) {
-				courseDeleteByIdResponse.setCode(IS_OK_ITEM);
+				courseDeleteByIdResponse.setCode(NOT_FOUND_ITEM);
 				courseDeleteByIdResponse.setOperationMessage("problem at deleted");
 				return courseDeleteByIdResponse;
 			}

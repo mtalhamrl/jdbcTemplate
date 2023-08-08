@@ -35,7 +35,6 @@ public class StudentsGradeDaoImpl implements StudentsGradeDao{
 	@Override
 	public int update(StudentsGrade studentsGrade) {
 		String Sql="update studentsgrade set grade=? where id=?";
-		
 		return jdbcTemplate.update(Sql,studentsGrade.getGrade(),studentsGrade.getId());
 	}
 
