@@ -14,6 +14,8 @@ public class CoursesUnitRowMapper implements RowMapper<CoursesUnit>{
 		CoursesUnit coursesUnit = new CoursesUnit();
 		coursesUnit.setId(rs.getInt("id"));
 		coursesUnit.setUnit(rs.getString("unit"));
+		coursesUnit.setTest_id(rs.getInt("test_id"));
+
 		return coursesUnit;
 	}
 

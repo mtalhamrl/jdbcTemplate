@@ -14,6 +14,7 @@ public class UnitTestRowMapper implements RowMapper<UnitTest>{
 		UnitTest unitTest = new UnitTest();
 		unitTest.setId(rs.getInt("id"));
 		unitTest.setTest_no(rs.getInt("unit"));
+		unitTest.setQuestion_id(rs.getInt("question_id"));
 		return null;
 	}
 

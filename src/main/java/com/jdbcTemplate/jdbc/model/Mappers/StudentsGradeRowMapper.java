@@ -14,7 +14,7 @@ public class StudentsGradeRowMapper implements RowMapper<StudentsGrade>{
 		StudentsGrade studentsGrade = new StudentsGrade();
 		studentsGrade.setId(rs.getInt("id"));
 		studentsGrade.setGrade(rs.getInt("grade"));
+		studentsGrade.setCourse_id(rs.getInt("course_id"));
 	  return studentsGrade; 
 	}
-
 }

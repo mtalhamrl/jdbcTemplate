@@ -8,5 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateTestQuestionRequest {
-	private int id;
+	private int question_no;
+	private String question_answer;
 }

@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class UnitTest {
 	private int id;
 	private int test_no;
+	private int question_id;
 }

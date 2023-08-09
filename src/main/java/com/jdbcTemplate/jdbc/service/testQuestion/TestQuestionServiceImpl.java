@@ -12,9 +12,9 @@ import com.jdbcTemplate.jdbc.dao.testQuestion.TestQuestionDao;
 import com.jdbcTemplate.jdbc.entities.TestQuestion;
 import com.jdbcTemplate.jdbc.model.request.testQuestion.CreateTestQuestionRequest;
 import com.jdbcTemplate.jdbc.model.request.testQuestion.UpdateTestQuestionRequest;
+import com.jdbcTemplate.jdbc.model.response.testQuestion.TestQuestionDeleteByIdResponse;
 import com.jdbcTemplate.jdbc.model.response.testQuestion.TestQuestionGetAllResponse;
 import com.jdbcTemplate.jdbc.model.response.testQuestion.TestQuestionGetByIdResponse;
-import com.jdbcTemplate.jdbc.model.response.unitTest.UnitTestDeleteByIdResponse;
 @Service
 public class TestQuestionServiceImpl implements TestQuestionService{
 	@Autowired
@@ -69,14 +69,39 @@ public class TestQuestionServiceImpl implements TestQuestionService{
 
 	@Override
 	public TestQuestionGetByIdResponse update(UpdateTestQuestionRequest updateTestQuestionRequest, int id) {
-		
-		return null;
+		TestQuestionGetByIdResponse updateResponse = new TestQuestionGetByIdResponse();
+		TestQuestion testQuestion = testQuestionDao.getById(id);
+		if(testQuestion==null) {
+			updateResponse.setCode(NOT_FOUND_ITEM);
+			updateResponse.setOperationMessage("there is not id");
+			return updateResponse;
+		}
+		testQuestion.setQuestion_no(updateTestQuestionRequest.getQuestion_no());
+		testQuestion.setQuestion_answer(updateTestQuestionRequest.getQuestion_answer());
+		int isOk= testQuestionDao.update(testQuestion);
+		if(isOk>0) {
+			return this.getById(id);
+		}else {
+			updateResponse.setCode(NOT_FOUND_ITEM);
+			updateResponse.setOperationMessage("there is no any update");
+			return updateResponse;
+		}
 	}
 
 	@Override
-	public UnitTestDeleteByIdResponse deleteById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public TestQuestionDeleteByIdResponse deleteById(int id) {
+		TestQuestionDeleteByIdResponse deleteByIdResponse = new TestQuestionDeleteByIdResponse();
+		TestQuestionDeleteByIdResponse getByIdResponse = this.deleteById(id);
+		if(getByIdResponse.getCode()==IS_OK_ITEM) {
+			int response = testQuestionDao.deleteById(id);
+			if(response<=0) {
+				deleteByIdResponse.setCode(NOT_FOUND_ITEM);
+				deleteByIdResponse.setOperationMessage("problem at deleted");
+			}
+		}
+		deleteByIdResponse.setCode(IS_OK_ITEM);
+		deleteByIdResponse.setOperationMessage("deleted");
+		return deleteByIdResponse;
 	}
 
 }

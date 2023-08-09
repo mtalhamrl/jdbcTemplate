@@ -13,6 +13,7 @@ public class CourseRowMapper implements org.springframework.jdbc.core.RowMapper<
 			Course course = new Course();  
 			course.setId(rs.getInt("id"));
 			course.setName(rs.getString("name"));
+			course.setCourseunit_id(rs.getInt("courseunit_id"));
 		  return course; 
 		 }  
 	}
