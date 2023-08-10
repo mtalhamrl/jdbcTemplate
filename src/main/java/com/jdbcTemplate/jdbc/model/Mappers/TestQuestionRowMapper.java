@@ -13,8 +13,9 @@ public class TestQuestionRowMapper implements RowMapper<TestQuestion>{
 	public TestQuestion mapRow(ResultSet rs, int rowNum) throws SQLException {
 		TestQuestion testQuestion = new TestQuestion();
 		testQuestion.setId(rs.getInt("id"));
-		testQuestion.setQuestion_no(rs.getInt("question_no"));
+		testQuestion.setQuestion_no(rs.getString("question_no"));
 		testQuestion.setQuestion_answer(rs.getString("question_answer"));
+		testQuestion.setTest_id(rs.getInt("test_id"));
 		return testQuestion;
 	}
 

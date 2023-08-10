@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdateCourseRequest {
 
-	private String name;
+	private String course_name;
+	private int grade_id;
 }

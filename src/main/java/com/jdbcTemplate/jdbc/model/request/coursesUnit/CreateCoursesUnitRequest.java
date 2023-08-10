@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class CreateCoursesUnitRequest {
 	private int id;
 	private String unit;
+	private int course_id;
 }

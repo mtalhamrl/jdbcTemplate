@@ -13,9 +13,9 @@ public class UnitTestRowMapper implements RowMapper<UnitTest>{
 	public UnitTest mapRow(ResultSet rs, int rowNum) throws SQLException {
 		UnitTest unitTest = new UnitTest();
 		unitTest.setId(rs.getInt("id"));
-		unitTest.setTest_no(rs.getInt("unit"));
-		unitTest.setQuestion_id(rs.getInt("question_id"));
-		return null;
+		unitTest.setTest_no(rs.getString("test_no"));
+		unitTest.setCoursesunit_id(rs.getInt("coursesunit_id"));
+		return unitTest;
 	}
 
 }

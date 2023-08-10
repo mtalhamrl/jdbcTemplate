@@ -24,7 +24,8 @@ public class CourseServiceImpl implements CourseService{
 		CourseGetByIdResponse insertResponse = new CourseGetByIdResponse();
 		Course course = new Course();
 		course.setId(createCourseRequest.getId());
-		course.setName(createCourseRequest.getName());
+		course.setCourse_name(createCourseRequest.getCourse_name());
+		course.setGrade_id(createCourseRequest.getGrade_id());
 		int isOk = courseDao.insert(course);
 		if(isOk>0) {
 			return this.getById(createCourseRequest.getId());
@@ -58,7 +59,8 @@ public class CourseServiceImpl implements CourseService{
 			updateResponse.setOperationMessage("course didnt find"); 
 			return updateResponse;
 		}
-		courseDb.setName(updateCourseRequest.getName());
+		courseDb.setCourse_name(updateCourseRequest.getCourse_name());
+		courseDb.setGrade_id(updateCourseRequest.getGrade_id());
 		int isOk = courseDao.update(courseDb);
 		if(isOk>0) {
 			return this.getById(id);

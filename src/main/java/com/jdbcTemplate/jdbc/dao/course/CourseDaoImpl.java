@@ -21,19 +21,19 @@ public class CourseDaoImpl implements CourseDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	@Override
-	public int insert(Course createCourseRequest) {
-		return jdbcTemplate.update("insert into Course values(?,?) ", createCourseRequest.getId(),createCourseRequest.getName());	      
+	public int insert(Course course) {
+		return jdbcTemplate.update("insert into Course values(?,?,?) ", course.getId(),course.getCourse_name(),course.getGrade_id());	      
 	}
 	@Override
 	public List<Course> getAll() {
-		String Sql="select * from Course";
+		String Sql="select * from course";
 		List<Course> courses = jdbcTemplate.query(Sql,new CourseRowMapper());
 		return courses;
 	}
 	@Override
 	public int update(Course course) {
 		String sql="update course set name=? where id =? ";
-		return jdbcTemplate.update(sql,course.getName(),course.getId());
+		return jdbcTemplate.update(sql,course.getCourse_name(),course.getId());
 	}
 	@Override
 	public Course getById(int id) {

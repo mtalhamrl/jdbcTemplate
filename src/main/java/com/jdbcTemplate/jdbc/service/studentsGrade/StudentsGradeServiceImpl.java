@@ -25,7 +25,7 @@ public class StudentsGradeServiceImpl implements StudentsGradeService{
 		StudentsGradeGetByIdResponse insertResponse = new StudentsGradeGetByIdResponse();
 		StudentsGrade grade = new StudentsGrade();
 		grade.setId(createStudentsGradeRequest.getId());
-		grade.setGrade(createStudentsGradeRequest.getGrade());
+		grade.setGrade_name(createStudentsGradeRequest.getGrade_name());
 		int isOk = studentsGradeDao.insert(grade);
 		if(isOk>0) {
 			return this.getById(createStudentsGradeRequest.getId());
@@ -62,7 +62,7 @@ public class StudentsGradeServiceImpl implements StudentsGradeService{
 			updateResponse.setOperationMessage("students grades didnt find");
 			return updateResponse;
 		}
-		gradeDb.setGrade(updateStudentsGradeRequest.getGrade());
+		gradeDb.setGrade_name(updateStudentsGradeRequest.getGrade_name());
 		int isOk= studentsGradeDao.update(gradeDb);
 		if(isOk>0) {
 			return this.getById(id);

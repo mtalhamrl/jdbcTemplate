@@ -2,6 +2,7 @@ package com.jdbcTemplate.jdbc.dao.coursesunit;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -16,17 +17,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CoursesUnitDaoImpl implements CoursesUnitDao{
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	private CoursesUnit coursesUnit;
 	@Override
 	public int insert(CoursesUnit coursesUnit) {
-		String sql="insert into coursesunit values(?,?)";
-		return jdbcTemplate.update(sql,coursesUnit.getId(),coursesUnit.getUnit());
+		String sql="insert into coursesunit values(?,?,?)";
+		return jdbcTemplate.update(sql,coursesUnit.getId(),coursesUnit.getUnit(),coursesUnit.getCourse_id());
 	}
 
 	@Override
 	public List<CoursesUnit> getAll() {
-		String sql="select *from coursesunit";
+		String sql="select * from coursesunit";
 		List<CoursesUnit> coursesUnits = jdbcTemplate.query(sql, new CoursesUnitRowMapper());
 		return coursesUnits;
 	}

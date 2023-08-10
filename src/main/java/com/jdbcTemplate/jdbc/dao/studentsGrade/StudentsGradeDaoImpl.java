@@ -22,7 +22,7 @@ public class StudentsGradeDaoImpl implements StudentsGradeDao{
 	@Override
 	public int insert(StudentsGrade studentsGrade) {
 		String sql=" insert into studentsgrade values(?,?)";
-		return jdbcTemplate.update(sql,studentsGrade.getId(),studentsGrade.getGrade());
+		return jdbcTemplate.update(sql,studentsGrade.getId(),studentsGrade.getGrade_name());
 	}
 
 	@Override
@@ -34,8 +34,8 @@ public class StudentsGradeDaoImpl implements StudentsGradeDao{
 
 	@Override
 	public int update(StudentsGrade studentsGrade) {
-		String Sql="update studentsgrade set grade=? where id=?";
-		return jdbcTemplate.update(Sql,studentsGrade.getGrade(),studentsGrade.getId());
+		String Sql="update studentsgrade set grade_name=? where id=?";
+		return jdbcTemplate.update(Sql,studentsGrade.getGrade_name(),studentsGrade.getId());
 	}
 
 	@Override

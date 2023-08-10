@@ -2,6 +2,7 @@ package com.jdbcTemplate.jdbc.dao.testQuestion;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TestQuestionDaoImpl implements TestQuestionDao{
+	@Autowired
 	JdbcTemplate jdbcTemplate;
 	TestQuestion testQuestion;
 	@Override
@@ -26,8 +28,8 @@ public class TestQuestionDaoImpl implements TestQuestionDao{
 
 	@Override
 	public int insert(TestQuestion testQuestion) {
-		String sql="insert into test_question values(?,?,?)";
-		return jdbcTemplate.update(sql,testQuestion.getId(),testQuestion.getQuestion_no(),testQuestion.getQuestion_answer());
+		String sql="insert into test_question values(?,?,?,?)";
+		return jdbcTemplate.update(sql,testQuestion.getId(),testQuestion.getQuestion_no(),testQuestion.getQuestion_answer(),testQuestion.getTest_id());
 	}
 
 	@Override

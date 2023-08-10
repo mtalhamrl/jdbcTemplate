@@ -40,6 +40,7 @@ public class TestQuestionServiceImpl implements TestQuestionService{
 		testQuestion.setId(createTestQuestionRequest.getId());
 		testQuestion.setQuestion_no(createTestQuestionRequest.getQuestion_no());
 		testQuestion.setQuestion_answer(createTestQuestionRequest.getQuestion_answer());
+		testQuestion.setTest_id(createTestQuestionRequest.getTest_id());
 		int isOk= testQuestionDao.insert(testQuestion);
 		if(isOk>0) {
 			return this.getById(createTestQuestionRequest.getId());
@@ -78,6 +79,7 @@ public class TestQuestionServiceImpl implements TestQuestionService{
 		}
 		testQuestion.setQuestion_no(updateTestQuestionRequest.getQuestion_no());
 		testQuestion.setQuestion_answer(updateTestQuestionRequest.getQuestion_answer());
+		testQuestion.setTest_id(updateTestQuestionRequest.getTest_id());
 		int isOk= testQuestionDao.update(testQuestion);
 		if(isOk>0) {
 			return this.getById(id);

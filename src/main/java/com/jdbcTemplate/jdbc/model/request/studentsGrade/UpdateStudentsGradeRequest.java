@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateStudentsGradeRequest {
-	private int grade;
+	private String grade_name;
 }

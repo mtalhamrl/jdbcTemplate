@@ -9,25 +9,24 @@ import org.springframework.stereotype.Component;
 import com.jdbcTemplate.jdbc.entities.UnitTest;
 import com.jdbcTemplate.jdbc.model.Mappers.UnitTestRowMapper;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 @Component("UnitTestDao")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
+
 public class UnitTestImpl implements UnitTestDao{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	@Override
 	public int insert(UnitTest unitTest) {
-		String sql="insert into unit_test values(?,?)";
-		return jdbcTemplate.update(sql,unitTest.getId(),unitTest.getTest_no());
+		String sql="insert into unit_test values(?,?,?)";
+		return jdbcTemplate.update(sql,unitTest.getId(),unitTest.getTest_no(),unitTest.getCoursesunit_id());
 	}
 
 	@Override
 	public List<UnitTest> getAll() {
-		String sql="select *from unit_test";
+		String sql="select * from unit_test";
 		return jdbcTemplate.query(sql, new UnitTestRowMapper());
 	}
 

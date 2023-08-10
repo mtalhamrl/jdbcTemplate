@@ -5,6 +5,7 @@ import static com.jdbcTemplate.jdbc.model.response.BaseResponse.NOT_FOUND_ITEM;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jdbcTemplate.jdbc.dao.unitTest.UnitTestDao;
@@ -14,22 +15,18 @@ import com.jdbcTemplate.jdbc.model.request.unitTest.UpdateUnitTestRequest;
 import com.jdbcTemplate.jdbc.model.response.unitTest.UnitTestDeleteByIdResponse;
 import com.jdbcTemplate.jdbc.model.response.unitTest.UnitTestGetAllResponse;
 import com.jdbcTemplate.jdbc.model.response.unitTest.UnitTestGetByIdResponse;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 @Service
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class UnitTestServiceImpl implements UnitTestService{
-	private UnitTestDao unitTestDao;
+	@Autowired
+	UnitTestDao unitTestDao;
 	@Override
 	public UnitTestGetByIdResponse insert(CreateUnitTestRequest createUnitTestRequest) {
 		UnitTestGetByIdResponse insertResponse = new UnitTestGetByIdResponse();
 		UnitTest unitTestDb= new UnitTest();
 		unitTestDb.setId(createUnitTestRequest.getId());
 		unitTestDb.setTest_no(createUnitTestRequest.getTest_no());
+		unitTestDb.setCoursesunit_id(createUnitTestRequest.getCoursesunit_id());
 		int isOk= unitTestDao.insert(unitTestDb);
 		if(isOk>0) {
 			return this.getById(createUnitTestRequest.getId());
@@ -67,6 +64,7 @@ public class UnitTestServiceImpl implements UnitTestService{
 			return updateResponse;
 		}
 		unitTest.setTest_no(updateUnitTestRequest.getTest_no());
+		unitTest.setCoursesunit_id(updateUnitTestRequest.getCoursesunit_id());
 		int isOk= unitTestDao.update(unitTest);
 		if(isOk>0) {
 			return this.getById(id);

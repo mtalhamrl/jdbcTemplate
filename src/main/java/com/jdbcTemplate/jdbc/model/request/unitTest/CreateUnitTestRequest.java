@@ -7,5 +7,9 @@ import lombok.Setter;
 @Setter
 public class CreateUnitTestRequest {
 	private int id;
-	private int test_no;
+	private String test_no;
+	private int coursesunit_id;
+	
+
+
 }

@@ -7,5 +7,6 @@ import lombok.Setter;
 @Setter
 public class UpdateCoursesUnitRequest {
 	private String unit;
+	private int course_id;
 
 }

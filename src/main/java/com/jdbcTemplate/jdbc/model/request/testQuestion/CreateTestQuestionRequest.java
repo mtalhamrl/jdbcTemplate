@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreateTestQuestionRequest {
 	private int id;
-	private int question_no;
+	private String question_no;
 	private String question_answer;
+	private int test_id;
 }

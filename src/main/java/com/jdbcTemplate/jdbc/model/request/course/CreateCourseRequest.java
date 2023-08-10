@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreateCourseRequest {
 	private int id;
-	private String name;
+	private String course_name;
+	private int grade_id;
 }

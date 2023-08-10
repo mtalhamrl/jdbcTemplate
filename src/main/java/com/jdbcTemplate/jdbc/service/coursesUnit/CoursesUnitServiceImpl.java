@@ -25,6 +25,7 @@ public class CoursesUnitServiceImpl implements CoursesUnitService{
 		CoursesUnit unitDb= new CoursesUnit();
 		unitDb.setId(createCoursesUnitRequest.getId());
 		unitDb.setUnit(createCoursesUnitRequest.getUnit());
+		unitDb.setCourse_id(createCoursesUnitRequest.getCourse_id());
 		int isOk = coursesUnitDao.insert(unitDb);
 		if(isOk>0) {
 			return this.insert(createCoursesUnitRequest);
@@ -61,6 +62,7 @@ public class CoursesUnitServiceImpl implements CoursesUnitService{
 			return getByIdResponse;
 		}
 		unitDb.setUnit(updateCoursesUnitRequest.getUnit());
+		unitDb.setCourse_id(updateCoursesUnitRequest.getCourse_id());
 		int isOk = coursesUnitDao.update(unitDb);
 		if(isOk>0) {
 			return getById(id);

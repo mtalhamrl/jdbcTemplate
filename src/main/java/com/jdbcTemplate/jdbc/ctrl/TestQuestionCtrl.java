@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jdbcTemplate.jdbc.model.request.unitTest.CreateUnitTestRequest;
-import com.jdbcTemplate.jdbc.model.request.unitTest.UpdateUnitTestRequest;
+import com.jdbcTemplate.jdbc.model.request.testQuestion.CreateTestQuestionRequest;
+import com.jdbcTemplate.jdbc.model.request.testQuestion.UpdateTestQuestionRequest;
 import com.jdbcTemplate.jdbc.model.response.testQuestion.TestQuestionDeleteByIdResponse;
 import com.jdbcTemplate.jdbc.model.response.testQuestion.TestQuestionGetAllResponse;
 import com.jdbcTemplate.jdbc.model.response.testQuestion.TestQuestionGetByIdResponse;
@@ -25,23 +25,23 @@ public class TestQuestionCtrl {
 	TestQuestionService testQuestionService;
 	@GetMapping("/{id}")
 	public TestQuestionGetByIdResponse getById(@PathVariable int id) {
-		return null;
+		return testQuestionService.getById(id);
 	}
 	@PostMapping("/add")
-	ResponseEntity<?> insert(@RequestBody CreateUnitTestRequest createUnitTestRequest){
-		return null;
+	ResponseEntity<?> insert(@RequestBody CreateTestQuestionRequest createTestQuestionRequest){
+		return ResponseEntity.ok(testQuestionService.insert(createTestQuestionRequest));
 	}
 	@GetMapping("/getall")
 	public TestQuestionGetAllResponse getAll() {
-		return null;
+		return testQuestionService.getAll();
 	}
 	@PutMapping("/update/{id}")
-	ResponseEntity<?> update(@RequestBody UpdateUnitTestRequest unitTestRequest,@PathVariable int id ){
-		return null;
+	ResponseEntity<?> update(@RequestBody UpdateTestQuestionRequest updateTestQuestionRequest,@PathVariable int id ){
+		return ResponseEntity.ok(testQuestionService.update(updateTestQuestionRequest, id));
 	}
 	@DeleteMapping("/{id}")
 	public TestQuestionDeleteByIdResponse deleteById(@PathVariable int id) {
-		return null;
+		return testQuestionService.deleteById(id);
 	}
 	}
 

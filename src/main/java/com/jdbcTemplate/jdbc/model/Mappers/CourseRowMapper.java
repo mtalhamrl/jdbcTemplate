@@ -12,8 +12,8 @@ public class CourseRowMapper implements org.springframework.jdbc.core.RowMapper<
 	 public Course mapRow(ResultSet rs, int rowNum) throws SQLException {  
 			Course course = new Course();  
 			course.setId(rs.getInt("id"));
-			course.setName(rs.getString("name"));
-			course.setCourseunit_id(rs.getInt("courseunit_id"));
+			course.setCourse_name(rs.getString("course_name"));
+			course.setGrade_id(rs.getInt("grade_id"));
 		  return course; 
 		 }  
 	}

@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UnitTest {
 	private int id;
-	private int test_no;
-	private int question_id;
+	private String test_no;
+	private int coursesunit_id;
 }

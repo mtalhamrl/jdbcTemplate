@@ -11,7 +11,5 @@ import lombok.Setter;
 @Setter
 public class CourseGetAllResponse extends BaseResponse {
 	List<Course> courses;
-	private int page_Number;
-	private int total_page;
-	private int rowsOfPage;
+	
 }

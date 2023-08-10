@@ -6,5 +6,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UpdateUnitTestRequest {
-	private int test_no;
+	private String test_no;
+	private int coursesunit_id;
+	
+
+
 }
