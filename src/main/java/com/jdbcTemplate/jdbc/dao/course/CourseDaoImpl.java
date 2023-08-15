@@ -3,7 +3,6 @@ package com.jdbcTemplate.jdbc.dao.course;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -38,14 +37,7 @@ public class CourseDaoImpl implements CourseDao {
 	@Override
 	public Course getById(int id) {
 		String sql="select * from course where id=?";
-		try {
 		return jdbcTemplate.queryForObject(sql, new CourseRowMapper(),id);		
-	}catch(Exception e){
-		if(!(e instanceof DataAccessException)) {
-			return null;
-		}
-		return null;
-	}
 	}
 	@Override
 	public int deleteById(int id) {
