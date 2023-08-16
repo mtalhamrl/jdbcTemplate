@@ -15,5 +15,4 @@ public class AnswerKey {
 	private String unit;
 	private String test_no;
 	private Map<String, String> answerMap;
-	
 }

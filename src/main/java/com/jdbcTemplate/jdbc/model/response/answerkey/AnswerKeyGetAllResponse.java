@@ -10,5 +10,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AnswerKeyGetAllResponse extends BaseResponse{
-	List<AnswerKey> answerKeys;
+		List<AnswerKey> answerKeys;
 }
