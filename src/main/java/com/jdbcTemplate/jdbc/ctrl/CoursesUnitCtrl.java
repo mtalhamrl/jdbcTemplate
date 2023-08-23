@@ -24,15 +24,15 @@ public class CoursesUnitCtrl {
 	@Autowired
 	CoursesUnitService coursesUnitService;
 	
-	@PostMapping("/add")
+	@PostMapping
 	ResponseEntity<?> insert(@RequestBody() CreateCoursesUnitRequest createCoursesUnitRequest){
 		return ResponseEntity.ok(coursesUnitService.insert(createCoursesUnitRequest));
 	}
-	@GetMapping("/getall")
+	@GetMapping
 	CoursesUnitGetAllResponse getAll(){
 		return coursesUnitService.getAll();
 	}
-	@PutMapping("/update/{id}")
+	@PutMapping
 	ResponseEntity<?> update(@RequestBody UpdateCoursesUnitRequest updateCoursesUnitRequest,@PathVariable int id){
 		return ResponseEntity.ok(coursesUnitService.update(updateCoursesUnitRequest, id));
 	}

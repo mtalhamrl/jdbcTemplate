@@ -24,8 +24,7 @@ public class AnswerKeyCtrl {
 	@Autowired
 	AnswerKeyService answerKeyService;
 	AnswerKeyDao answerKeyDao;
-	
-	  @GetMapping("/getall") 
+	  @GetMapping
 	  public AnswerKeyGetAllResponse getAll() {
 		  return answerKeyService.getAll(); }
 	 

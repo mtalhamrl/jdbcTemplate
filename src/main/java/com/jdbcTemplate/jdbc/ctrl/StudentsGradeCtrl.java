@@ -24,16 +24,16 @@ import com.jdbcTemplate.jdbc.service.studentsGrade.StudentsGradeService;
 public class StudentsGradeCtrl {
 	@Autowired
 	StudentsGradeService studentsGradeService;
-	@PostMapping("/add")
+	@PostMapping
 	ResponseEntity<?> insert(@RequestBody CreateStudentsGradeRequest createStudentsGradeRequest) {
 	return ResponseEntity.ok(studentsGradeService.insert(createStudentsGradeRequest));
 }
-	@GetMapping("/getall")
+	@GetMapping
 	public StudentsGradeGetAllResponse getAll() {
 		return studentsGradeService.getAll();
 	}
 	
-	@PutMapping("/update/{id}")
+	@PutMapping
 	ResponseEntity<?> update(@RequestBody UpdateStudentsGradeRequest gradeRequest , @PathVariable int id){		
 		return ResponseEntity.ok(studentsGradeService.update(gradeRequest, id));
 	}

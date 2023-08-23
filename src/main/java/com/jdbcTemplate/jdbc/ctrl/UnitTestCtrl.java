@@ -30,15 +30,15 @@ import lombok.NoArgsConstructor;
 public class UnitTestCtrl {
 	@Autowired
 	private UnitTestService unitTestService;
-	@PostMapping("/add")
+	@PostMapping
 	ResponseEntity<?> insert(@RequestBody CreateUnitTestRequest createUnitTestRequest){
 		return ResponseEntity.ok(unitTestService.insert(createUnitTestRequest));
 	}
-	@GetMapping("/getall")
+	@GetMapping
 	public UnitTestGetAllResponse getAll() {
 		return unitTestService.getAll(); 
 	}
-	@PutMapping("/update/{id}")
+	@PutMapping
 	ResponseEntity<?> update(@RequestBody UpdateUnitTestRequest unitTestRequest , @PathVariable int id){
 		return ResponseEntity.ok(unitTestService.update(unitTestRequest, id));
 	}

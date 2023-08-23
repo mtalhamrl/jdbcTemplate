@@ -27,15 +27,15 @@ public class TestQuestionCtrl {
 	public TestQuestionGetByIdResponse getById(@PathVariable int id) {
 		return testQuestionService.getById(id);
 	}
-	@PostMapping("/add")
+	@PostMapping
 	ResponseEntity<?> insert(@RequestBody CreateTestQuestionRequest createTestQuestionRequest){
 		return ResponseEntity.ok(testQuestionService.insert(createTestQuestionRequest));
 	}
-	@GetMapping("/getall")
+	@GetMapping
 	public TestQuestionGetAllResponse getAll() {
 		return testQuestionService.getAll();
 	}
-	@PutMapping("/update/{id}")
+	@PutMapping
 	ResponseEntity<?> update(@RequestBody UpdateTestQuestionRequest updateTestQuestionRequest,@PathVariable int id ){
 		return ResponseEntity.ok(testQuestionService.update(updateTestQuestionRequest, id));
 	}
