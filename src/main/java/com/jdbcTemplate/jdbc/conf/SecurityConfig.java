@@ -8,11 +8,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -24,7 +19,8 @@ public class SecurityConfig {
 	@Bean
 	public UserDetailsManager userDetailsManager(DataSource dataSource) {
 		return new JdbcUserDetailsManager(dataSource);
-	}
+	} 
+	//users pw : test123
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
        httpSecurity.authorizeHttpRequests(configurer->
@@ -68,7 +64,7 @@ public class SecurityConfig {
        		//disable cross site request forgery (csrf)
        		//in genreal, not required for staless Restapis that use post put delete patch.
        		httpSecurity.csrf(csrf->csrf.disable());
-       	return  httpSecurity.build();
+       	return  httpSecurity.build(); 
     }
 	
 	
@@ -82,8 +78,9 @@ public class SecurityConfig {
 	 * new InMemoryUserDetailsManager(admin,user); }
 	 */
 	  
-	  @Bean public PasswordEncoder passwordEncoder() { return new
-	  BCryptPasswordEncoder(); }
-	 
+	/*
+	 * @Bean public PasswordEncoder passwordEncoder() { return new
+	 * BCryptPasswordEncoder(); }
+	 */
 	 
 }
